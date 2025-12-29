@@ -4,7 +4,7 @@
   --bg-primary: #ffffff;
   --bg-secondary: #f8f9fa;
   --text-primary: #282c34;
-  --text-secondary: #61dafb;
+  --text-secondary: #3c8dbc;
   --border-color: #e9ecef;
   --button-bg: #007bff;
   --button-text: #ffffff;
@@ -13,92 +13,121 @@
 [data-theme="dark"] {
   /* Dark theme colors */
   --bg-primary: #1a1a1a;
-  --bg-secondary: #282c34;
+  --bg-secondary: #222;
   --text-primary: #ffffff;
-  --text-secondary: #61dafb;
+  --text-secondary: #7cc1ff;
   --border-color: #404040;
   --button-bg: #0056b3;
   --button-text: #ffffff;
 }
 
+* { box-sizing: border-box; }
+
 .App {
-  text-align: center;
+  text-align: left;
   background-color: var(--bg-primary);
   color: var(--text-primary);
   min-height: 100vh;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: var(--bg-secondary);
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: var(--text-primary);
   transition: background-color 0.3s ease;
   position: relative;
 }
 
-.App-link {
-  color: var(--text-secondary);
-  transition: color 0.3s ease;
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  background: var(--bg-primary);
+  z-index: 10;
+}
+
+.navbar .brand {
+  font-weight: 700;
+  margin-right: 12px;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.navbar a {
+  margin-right: 12px;
+  text-decoration: none;
+  color: var(--text-primary);
+  padding: 6px 8px;
+  border-radius: 6px;
+}
+
+.navbar a.active {
+  color: var(--button-text);
+  background: var(--button-bg);
+}
+
+.nav-left, .nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.btn {
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
 }
 
 .theme-toggle {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 12px;
+  right: 16px;
   background-color: var(--button-bg);
   color: var(--button-text);
   border: none;
   border-radius: 8px;
-  padding: 10px 20px;
+  padding: 8px 12px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
 .theme-toggle:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  opacity: 0.9;
+  transform: translateY(-1px);
 }
 
-.theme-toggle:active {
-  transform: translateY(0);
-}
+.list { margin-top: 16px; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+.list .row { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 8px; padding: 10px 12px; border-bottom: 1px solid var(--border-color); }
+.list .row.header { font-weight: 600; background: rgba(0,0,0,0.03); }
+.list .row:last-child { border-bottom: none; }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+.filters { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.filters input, .filters select { padding: 8px; border: 1px solid var(--border-color); border-radius: 6px; }
+.filters .btn { padding: 8px 10px; }
 
-/* Responsive design for mobile */
+.form-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+.form-field input, .form-field textarea { padding: 8px; border: 1px solid var(--border-color); border-radius: 6px; background: var(--bg-primary); color: var(--text-primary); }
+
+.section { margin: 16px 0; }
+.section h3 { margin: 8px 0 12px; }
+
+.helper { color: var(--text-secondary); font-size: 14px; }
+
 @media (max-width: 768px) {
-  .theme-toggle {
-    top: 10px;
-    right: 10px;
-    padding: 8px 16px;
-    font-size: 12px;
-  }
+  .theme-toggle { top: 8px; right: 8px; }
+  .list .row { grid-template-columns: 2fr 1fr 1fr; }
 }
